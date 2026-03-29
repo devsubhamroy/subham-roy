@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR_DEV — Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --card: #16161f;
+            --border: #2a2a38;
+            --accent: #7c5cfc;
+            --accent2: #e8ff57;
+            --text: #e8e8f0;
+            --muted: #7a7a9a;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Mono', monospace;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 260px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .admin-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: var(--accent2);
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+        }
+
+        nav.sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(124, 92, 252, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(124, 92, 252, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 2rem 4rem;
+        }
+
+        header.top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        h1.page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0.5;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent2);
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Table Style */
+        .content-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            text-align: left;
+            padding: 1rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge-status {
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            background: rgba(232, 255, 87, 0.1);
+            color: var(--accent2);
+            border: 1px solid rgba(232, 255, 87, 0.2);
+        }
+
+        .btn-action {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'DM Mono';
+        }
+
+        .btn-action:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="admin-logo">SR_ADMIN</div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">Dashboard</a>
+            <a href="#" class="nav-item">Manage Projects</a>
+            <a href="#" class="nav-item">Inquiries</a>
+            <a href="#" class="nav-item">Settings</a>
+            <a href="#" class="nav-item">Logout</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header class="top-bar">
+            <h1 class="page-title">Overview</h1>
+            <div class="user-info" style="font-size: 0.8rem;">
+                Subham Roy <span style="color: var(--accent);">• Admin</span>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div style="font-size: 0.7rem; color: var(--muted);">Total Projects</div>
+                <div class="stat-value">12</div>
+            </div>
+            <div class="stat-card">
+                <div style="font-size: 0.7rem; color: var(--muted);">Active Leads</div>
+                <div class="stat-value">48</div>
+            </div>
+            <div class="stat-card">
+                <div style="font-size: 0.7rem; color: var(--muted);">Site Visits</div>
+                <div class="stat-value">1.2k</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border); font-family: 'Syne'; font-weight: 700;">
+                Recent Inquiries
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Project</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rahul Sharma</td>
+                        <td>Laravel CRM</td>
+                        <td><span class="badge-status">Pending</span></td>
+                        <td>29 Mar 2026</td>
+                        <td><button class="btn-action">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Priya Das</td>
+                        <td>E-commerce</td>
+                        <td><span class="badge-status">Replied</span></td>
+                        <td>28 Mar 2026</td>
+                        <td><button class="btn-action">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

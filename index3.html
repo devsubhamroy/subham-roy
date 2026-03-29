@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subham Roy | Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #030712;
+        --surface: #0f172a;
+        --card: #1e293b;
+        --border: #334155;
+        --primary: #f8fafc;
+        --accent: #38bdf8; /* Modern coding blue */
+        --text: #94a3b8;
+        --code-green: #4ade80;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* CODER BACKGROUND EFFECT */
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image: 
+          linear-gradient(to right, #1e293b 1px, transparent 1px),
+          linear-gradient(to bottom, #1e293b 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+        opacity: 0.2;
+      }
+
+      .glow {
+        position: fixed;
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 100vw; height: 100vh;
+        background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15), transparent 60%);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* NAVIGATION */
+      nav {
+        position: fixed;
+        top: 0; width: 100%;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.25rem 5%;
+        background: rgba(3, 7, 18, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+      .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: -1px; }
+      .nav-links { display: flex; gap: 2rem; }
+      .nav-links a { color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+      .nav-links a:hover { color: var(--accent); }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-badge {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--accent);
+        background: rgba(56, 189, 248, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        margin-bottom: 2rem;
+      }
+      h1 { font-size: clamp(2.5rem, 8vw, 5rem); color: var(--primary); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 1.5rem; }
+      h1 span { color: var(--accent); }
+      .hero-summary { max-width: 700px; font-size: clamp(1rem, 2vw, 1.2rem); margin-bottom: 3rem; }
+
+      /* CONTAINER RESPONSIVENESS */
+      .container { max-width: 1100px; margin: 0 auto; width: 90%; }
+      section { padding: 100px 0; }
+      .section-label { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+      h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 3rem; }
+
+      /* SKILLS GRID */
+      .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+      .skill-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; transition: 0.3s; }
+      .skill-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+      .skill-card h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1rem; }
+      .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .tag { background: var(--bg); border: 1px solid var(--border); color: var(--accent); padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; }
+
+      /* EXPERIENCE */
+      .exp-item { border-left: 2px solid var(--border); padding-left: 2rem; margin-bottom: 4rem; position: relative; }
+      .exp-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+      .exp-meta { display: flex; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+      .exp-meta h3 { color: var(--primary); font-size: 1.5rem; }
+      .exp-date { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+      .exp-list { list-style: none; }
+      .exp-list li { margin-bottom: 0.75rem; font-size: 0.95rem; }
+      .exp-list li::before { content: '>'; color: var(--accent); margin-right: 0.75rem; font-family: 'JetBrains Mono', monospace; }
+
+      /* FOOTER */
+      footer { border-top: 1px solid var(--border); padding: 4rem 0; text-align: center; background: rgba(3, 7, 18, 0.5); }
+      .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+      .social-links a { color: var(--primary); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; border-bottom: 1px solid transparent; transition: 0.2s; }
+      .social-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+      /* RESPONSIVE TWEAKS */
+      @media (max-width: 768px) {
+        .nav-links { display: none; } /* Mobile Menu would go here */
+        section { padding: 60px 0; }
+        h2 { font-size: 2rem; }
+        .exp-meta { flex-direction: column; gap: 0.25rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div class="glow"></div>
+
+    <nav>
+      <div class="nav-logo">SUBHAM_ROY.dev</div>
+      <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="mailto:devsubhamroy@gmail.com">Contact</a>
+      </div>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-badge">System.out.println("Hello, World!");</div>
+      <h1>Subham <span>Roy</span></h1>
+      <p class="hero-summary">
+        Seeking a challenging role as a **Web Developer**. I specialize in building high-performance web applications using **PHP/Laravel** and modern database architectures.
+      </p>
+      <div class="tag-cloud" style="justify-content: center;">
+        <span class="tag">#PHP</span>
+        <span class="tag">#Laravel</span>
+        <span class="tag">#MySQL</span>
+        <span class="tag">#FullStack</span>
+      </div>
+    </section>
+
+    <div class="container">
+      <section id="skills">
+        <span class="section-label">01 // SKILLS</span>
+        <h2>Technical Stack</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Backend Engineering</h3>
+            <div class="tag-cloud">
+              <span class="tag">PHP </span>
+              <span class="tag">Laravel </span>
+              <span class="tag">MVC Architecture </span>
+              <span class="tag">RESTful APIs </span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Database & DevOps</h3>
+            <div class="tag-cloud">
+              <span class="tag">MySQL </span>
+              <span class="tag">Database Design </span>
+              <span class="tag">Git / GitHub </span>
+              <span class="tag">SQL </span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Frontend Architecture</h3>
+            <div class="tag-cloud">
+              <span class="tag">JavaScript </span>
+              <span class="tag">HTML5/CSS3 </span>
+              <span class="tag">Bootstrap </span>
+              <span class="tag">AJAX/jQuery </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <span class="section-label">02 // EXPERIENCE</span>
+        <h2>Work History</h2>
+        
+        <div class="exp-item">
+          <div class="exp-meta">
+            <h3>Web Development Intern</h3>
+            <span class="exp-date">Present</span>
+          </div>
+          <p style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Hunt Digital Media</p>
+          <ul class="exp-list">
+            <li>Developed loan management web application using Laravel.</li>
+            <li>Implemented secure authentication, RESTful APIs, and RBAC.</li>
+            <li>Optimized MySQL schemas for transaction workflows.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <h3>Web Development Intern</h3>
+            <span class="exp-date">Nov 2025</span>
+          </div>
+          <p style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Shofx</p>
+          <ul class="exp-list">
+            <li>Contributed to web app development with PHP and MySQL.</li>
+            <li>Assisted in front-end design with Bootstrap and JavaScript.</li>
+            <li>Supported debugging and code reviews via Git.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="education">
+        <span class="section-label">03 // EDUCATION</span>
+        <h2>Academic Background</h2>
+        <div class="skill-card">
+            <h3 style="margin-bottom: 0.5rem;">Bachelor of Computer Applications (BCA) </h3>
+            <p style="color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;">IGNOU | A.B.N Seal College </p>
+            <p>GPA: 63% | Graduated Dec 2024 </p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <h2>Let's connect.</h2>
+        <p>Currently open to new opportunities and collaborations.</p>
+        <div class="social-links">
+          <a href="mailto:devsubhamroy@gmail.com">EMAIL </a>
+          <a href="https://linkedin.com/in/subhamroyavi/">LINKEDIN </a>
+          <a href="https://github.com/devsubhamroy">GITHUB </a>
+          <a href="tel:+919641857774">PHONE </a>
+        </div>
+        <p style="margin-top: 4rem; font-size: 0.7rem; opacity: 0.5;">© 2026 Subham Roy. Built for performance.</p>
+      </div>
+    </footer>
+  </body>
+</html>
